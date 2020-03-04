@@ -17,5 +17,9 @@ public class Actividad_2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_2);
         //prueba commit desde android studio
+
+        //ImageButton
+        suizo=findViewById(R.id.btnSuizo);
+
     }
 }
