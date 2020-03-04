@@ -15,19 +15,18 @@ public class Actividad_2 extends AppCompatActivity {
     ImageButton suizo,croissant,bizcocho,tortilla,jamon,chatka,sandia,melon,pina;
     TextView txtSuizo,txtCroissant,txtBizcocho,txtTortilla,txtJamon,txtChatka,txtSandia,txtMelon,txtPina;
     int cantSuizo,cantCroissant,cantBizcocho,cantTortilla,cantJamon,cantChatka,cantSandia,cantMelon,cantPina;
-    ArrayList <ImageButton> bolleria;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_2);
 
-        bolleria.add(suizo);
+
         //Buttons
         siguiente=findViewById(R.id.btnSiguiente);
         salir=findViewById(R.id.btnCancelar);
 
         //ImageButtons
-        //suizo=findViewById(R.id.btnSuizo);
+        suizo=findViewById(R.id.btnSuizo);
         croissant=findViewById(R.id.btnCroissant);
         bizcocho=findViewById(R.id.btnBizcocho);
         tortilla=findViewById(R.id.btnTortilla);
@@ -74,9 +73,71 @@ public class Actividad_2 extends AppCompatActivity {
             public void onClick(View v) {
                 cantSuizo+=1;
                 txtSuizo.setText(String.valueOf(cantSuizo));
+
             }
         });
 
+        croissant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cantCroissant+=1;
+                txtCroissant.setText(String.valueOf(cantCroissant));
+            }
+        });
+
+        bizcocho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cantBizcocho+=1;
+                txtBizcocho.setText(String.valueOf(cantBizcocho));
+            }
+        });
+
+        tortilla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cantTortilla+=1;
+                txtTortilla.setText(String.valueOf(cantTortilla));
+            }
+        });
+        jamon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cantJamon+=1;
+                txtJamon.setText(String.valueOf(cantJamon));
+            }
+        });
+        chatka.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cantChatka+=1;
+                txtChatka.setText(String.valueOf(cantChatka));
+            }
+        });
+
+        sandia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cantSandia+=1;
+                txtSandia.setText(String.valueOf(cantSandia));
+            }
+        });
+
+        melon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cantMelon+=1;
+                txtMelon.setText(String.valueOf(cantMelon));
+            }
+        });
+
+        pina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cantPina+=1;
+                txtPina.setText(String.valueOf(cantPina));
+            }
+        });
     }
 }
 
