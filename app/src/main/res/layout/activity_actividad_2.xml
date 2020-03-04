@@ -7,7 +7,7 @@
     tools:context=".Actividad_2">
 
     <TextView
-        android:id="@+id/txtBollo"
+        android:id="@+id/txtSuizo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,7 +98,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pintxos"
+        android:text="@string/pintxos"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
