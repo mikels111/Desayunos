@@ -16,5 +16,6 @@ public class Actividad_2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_2);
+        //prueba commit desde android studio
     }
 }
