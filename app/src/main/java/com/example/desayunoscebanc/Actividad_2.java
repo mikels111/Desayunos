@@ -136,6 +136,7 @@ public class Actividad_2 extends AppCompatActivity {
             public void onClick(View v) {
                 cantPina+=1;
                 txtPina.setText(String.valueOf(cantPina));
+                //
             }
         });
     }
