@@ -16,10 +16,20 @@ public class Actividad_2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_2);
-        //prueba commit desde android studio
+        //Buttons
+        siguiente=findViewById(R.id.btnSiguiente);
+        salir=findViewById(R.id.btnCancelar);
 
-        //ImageButton
+        //ImageButtons
         suizo=findViewById(R.id.btnSuizo);
-        //hola mundo
+        croissant=findViewById(R.id.btnCroissant);
+        bizcocho=findViewById(R.id.btnBizcocho);
+        tortilla=findViewById(R.id.btnTortilla);
+        jamon=findViewById(R.id.btnJamon);
+        chatka=findViewById(R.id.btnChatka);
+        sandia=findViewById(R.id.btnSandia);
+        melon=findViewById(R.id.btnMelon);
+        pina=findViewById(R.id.btnPina);
+
     }
 }
