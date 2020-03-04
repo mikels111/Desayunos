@@ -138,6 +138,7 @@ public class Actividad_2 extends AppCompatActivity {
                 txtPina.setText(String.valueOf(cantPina));
             }
         });
+        //prueba de commit desde otro ordenador
     }
 }
 
