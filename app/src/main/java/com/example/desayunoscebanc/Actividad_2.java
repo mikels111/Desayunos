@@ -20,6 +20,6 @@ public class Actividad_2 extends AppCompatActivity {
 
         //ImageButton
         suizo=findViewById(R.id.btnSuizo);
-
+        //hola mundo
     }
 }
