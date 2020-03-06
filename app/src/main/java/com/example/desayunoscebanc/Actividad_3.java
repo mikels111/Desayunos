@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Actividad_3 extends AppCompatActivity {
     ArrayList <String> listaProductos=new ArrayList<>();
     ListView lista;
-    TextView txtPrecioFinal,txtPrueba;
+    TextView txtPrecioFinal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,6 @@ public class Actividad_3 extends AppCompatActivity {
 
         lista=findViewById(R.id.listProductos);
         txtPrecioFinal=findViewById(R.id.txtPrecioFinal);
-        txtPrueba=findViewById(R.id.txtPrueba);
 
         Bundle bun=getIntent().getExtras();
         int cafe,te,infusion,cacao,agua,suizo,croissant,bizcocho,tortilla,jamon,chatka,sandia,melon,pina;
@@ -41,20 +40,22 @@ public class Actividad_3 extends AppCompatActivity {
         melon=bun.getInt("melon");
         pina=bun.getInt("pina");
 
-        txtPrueba.setText(String.valueOf(cafe));
+
 
         /*ArrayAdapter <Bebida> adapterBebidas=new ArrayAdapter<Bebida>(this,android.R.layout.simple_list_item_1,listaBebidas);
         lista.setAdapter(adapterBebidas);
         Bebida bebida1=new Bebida("cafe",2);
         listaBebidas.add(bebida1);*/
 
-        ArrayAdapter<String> adaptador=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,listaProductos);
+        ArrayAdapter<String> adaptador=new ArrayAdapter<>(this,android.R.layout.simple_list_item_2,listaProductos);
         lista.setAdapter(adaptador);
-        //listaProductos.add();
+
+        listaProductos.add(String.valueOf(cafe));
+        listaProductos.add(String.valueOf(te));
 
 
-        //listaProductos.add(infusion);
-        //listaProductos.add(te);
+
+
 
 
     }
