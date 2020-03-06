@@ -97,7 +97,7 @@ public class Actividad_1 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(Actividad_1.this,Actividad_2.class);
                 Bundle bundle =new Bundle();
-                bundle.putString("cafe",txtCafe.getText().toString());
+                bundle.putInt("cafe", Integer.parseInt(txtCafe.getText().toString()));
                 bundle.putString("te",txtTe.getText().toString());
                 bundle.putString("infusion",txtInfusion.getText().toString());
                 bundle.putString("cacao",txtCacao.getText().toString());

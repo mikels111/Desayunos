@@ -14,18 +14,20 @@ public class Actividad_2 extends AppCompatActivity {
     ImageButton suizo,croissant,bizcocho,tortilla,jamon,chatka,sandia,melon,pina;
     TextView textoSuizo, textoCroissant, textoBizcocho,textoTortilla, textoJamon, textoChatka, textoSandia, textoMelon, textoPina;
     int cantSuizo,cantCroissant,cantBizcocho,cantTortilla,cantJamon,cantChatka,cantSandia,cantMelon,cantPina;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_2);
 
         Bundle bun=getIntent().getExtras();
-        final String cantCafe,cantTe,cantInfu,cantCacao,cantAgua;
-        cantCafe=bun.getString("cafe");
-        cantTe=bun.getString("te");
-        cantInfu=bun.getString("infusion");
-        cantCacao=bun.getString("cacao");
-        cantAgua=bun.getString("agua");
+        final int cantCafe,cantTe,cantInfu,cantCacao,cantAgua;
+
+        cantCafe=bun.getInt("cafe");
+        cantTe=bun.getInt("te");
+        cantInfu=bun.getInt("infusion");
+        cantCacao=bun.getInt("cacao");
+        cantAgua=bun.getInt("agua");
 
         //Buttons
         siguiente=findViewById(R.id.btnSiguiente);
@@ -151,11 +153,11 @@ public class Actividad_2 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(Actividad_2.this,Actividad_3.class);
                 Bundle bun =new Bundle();
-                bun.putString("cafe",cantCafe);
-                bun.putString("te",cantTe);
-                bun.putString("infusion",cantInfu);
-                bun.putString("cacao",cantCacao);
-                bun.putString("agua",cantAgua);
+                bun.putInt("cantCafe",cantCafe);
+                bun.putInt("te",cantTe);
+                bun.putInt("infusion",cantInfu);
+                bun.putInt("cacao",cantCacao);
+                bun.putInt("agua",cantAgua);
 
                 bun.putString("suizo",textoSuizo.getText().toString());
                 bun.putString("croissant",textoCroissant.getText().toString());
