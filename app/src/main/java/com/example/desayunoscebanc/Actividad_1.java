@@ -49,20 +49,8 @@ public class Actividad_1 extends AppCompatActivity {
         txtCacao.setText(String.valueOf(cantCacao));
         txtAgua.setText(String.valueOf(cantAgua));
 
-        btnSiguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(Actividad_1.this,Actividad_2.class);
-                startActivity(intent);
-            }
-        });
 
-        salir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
 
         cafe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +91,30 @@ public class Actividad_1 extends AppCompatActivity {
                 txtAgua.setText(String.valueOf(cantAgua));
             }
         });
+
+        btnSiguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Actividad_1.this,Actividad_2.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("cafe",txtCafe.getText().toString());
+                bundle.putString("te",txtTe.getText().toString());
+                bundle.putString("infusion",txtInfusion.getText().toString());
+                bundle.putString("cacao",txtCacao.getText().toString());
+                bundle.putString("agua",txtAgua.getText().toString());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        salir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
 
     }
 }
