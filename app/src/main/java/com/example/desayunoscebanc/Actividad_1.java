@@ -3,6 +3,8 @@ package com.example.desayunoscebanc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,10 @@ public class Actividad_1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_1);
+
+        //color en las barras
+        getWindow().setStatusBarColor(Color.parseColor("#21A5C5"));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#21A5C5")));
 
         //Button
         btnSiguiente=findViewById(R.id.btnSiguiente);
@@ -97,11 +103,11 @@ public class Actividad_1 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(Actividad_1.this,Actividad_2.class);
                 Bundle bundle =new Bundle();
-                bundle.putInt("cafe", Integer.parseInt(txtCafe.getText().toString()));
-                bundle.putInt("te",Integer.parseInt(txtTe.getText().toString()));
-                bundle.putString("infusion",txtInfusion.getText().toString());
-                bundle.putString("cacao",txtCacao.getText().toString());
-                bundle.putString("agua",txtAgua.getText().toString());
+                bundle.putInt("cafe", cantCafe);
+                bundle.putInt("te",cantTe);
+                bundle.putInt("infusion",cantInfu);
+                bundle.putInt("cacao",cantCacao);
+                bundle.putInt("agua",cantAgua);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

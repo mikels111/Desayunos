@@ -3,6 +3,8 @@ package com.example.desayunoscebanc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,9 @@ public class Actividad_2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_2);
+
+        getWindow().setStatusBarColor(Color.parseColor("#21A5C5"));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#21A5C5")));
 
         Bundle bun=getIntent().getExtras();
         final int cantCafe,cantTe,cantInfu,cantCacao,cantAgua;
@@ -159,15 +164,15 @@ public class Actividad_2 extends AppCompatActivity {
                 bun.putInt("cacao",cantCacao);
                 bun.putInt("agua",cantAgua);
 
-                bun.putString("suizo",textoSuizo.getText().toString());
-                bun.putString("croissant",textoCroissant.getText().toString());
-                bun.putString("bizcocho",textoBizcocho.getText().toString());
-                bun.putString("tortilla",textoTortilla.getText().toString());
-                bun.putString("jamon",textoJamon.getText().toString());
-                bun.putString("chatka",textoChatka.getText().toString());
-                bun.putString("sandia",textoSandia.getText().toString());
-                bun.putString("melon",textoMelon.getText().toString());
-                bun.putString("pina",textoPina.getText().toString());
+                bun.putInt("suizo",cantSuizo);
+                bun.putInt("croissant",cantCroissant);
+                bun.putInt("bizcocho",cantBizcocho);
+                bun.putInt("tortilla",cantTortilla);
+                bun.putInt("jamon",cantJamon);
+                bun.putInt("chatka",cantChatka);
+                bun.putInt("sandia",cantSandia);
+                bun.putInt("melon",cantMelon);
+                bun.putInt("pina",cantPina);
 
                 intent.putExtras(bun);
                 startActivity(intent);
