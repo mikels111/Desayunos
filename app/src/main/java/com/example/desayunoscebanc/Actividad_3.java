@@ -3,10 +3,13 @@ package com.example.desayunoscebanc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,7 +22,7 @@ public class Actividad_3 extends AppCompatActivity {
 
 
     TextView txtPrecioFinal;
-
+    Button validar,salir;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +113,14 @@ public class Actividad_3 extends AppCompatActivity {
         }
         ProductoListAdapter adaptador=new ProductoListAdapter(this,R.layout.producto_adaptador,listaProductos);
         lista.setAdapter(adaptador);
+
+        validar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Actividad_3.this,Actividad_4.class);
+                startActivity(intent);
+            }
+        });
 
 
 
