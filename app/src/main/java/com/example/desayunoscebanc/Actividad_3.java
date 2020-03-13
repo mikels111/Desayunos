@@ -34,6 +34,8 @@ public class Actividad_3 extends AppCompatActivity {
 
         ListView lista=findViewById(listProductos);
         txtPrecioFinal=findViewById(R.id.txtPrecioFinal);
+        validar=findViewById(R.id.btnValidar);
+        salir=findViewById(R.id.btnCancelar);
 
         Bundle bun=getIntent().getExtras();
         int cafe,te,infusion,cacao,agua,suizo,croissant,bizcocho,tortilla,jamon,chatka,sandia,melon,pina;
