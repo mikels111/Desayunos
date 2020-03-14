@@ -22,6 +22,7 @@ public class Actividad_2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_2);
 
+        //color en las barras
         getWindow().setStatusBarColor(Color.parseColor("#21A5C5"));
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#21A5C5")));
 

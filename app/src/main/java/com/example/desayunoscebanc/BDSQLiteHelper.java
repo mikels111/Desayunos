@@ -1,12 +1,16 @@
 package com.example.desayunoscebanc;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.PreparedStatement;
+
 import androidx.annotation.Nullable;
 
 public class BDSQLiteHelper extends SQLiteOpenHelper {
+
 
     public void onCreate(SQLiteDatabase bd){
 
@@ -23,9 +27,11 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
 
         bd.execSQL("CREATE TABLE Pedido(" +
                 "CodPedido INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "CodCliente INTEGER," +
                 "Total INTEGER," +
                 "FechaPed DATE," +
-                "HoraPed TIME)");
+                "HoraPed TIME," +
+                "FOREIGN KEY(CodCliente) REFERENCES Cliente(CodCliente))");
 
         bd.execSQL("CREATE TABLE Linea(" +
                 "CodLinea INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -33,6 +39,7 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
                 "CodPedido INTEGER," +
                 "FOREIGN KEY(CodProducto) REFERENCES Producto(CodProducto)," +
                 "FOREIGN KEY(CodPedido) REFERENCES Pedido(CodPedido))");
+
     }
 
     public BDSQLiteHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {

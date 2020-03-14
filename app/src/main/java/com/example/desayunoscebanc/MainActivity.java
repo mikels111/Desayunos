@@ -3,6 +3,7 @@ package com.example.desayunoscebanc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
@@ -24,6 +25,16 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.parseColor("#21A5C5"));
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#21A5C5")));
 
+        //Base de Datos
+        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 1);
+        SQLiteDatabase db = bdDesayunos.getWritableDatabase();
+        try {
+            db.execSQL("INSERT INTO Cliente(CodCliente,Direccion,Telefono,Email) VALUES(1,'Calle Zubieta','943875621','antonio11@gmail.com');");
+        }catch(Exception e){
+
+        }
+
+        //Botones
         pedido=findViewById(R.id.btnPedido);
         salir=findViewById(R.id.btnCancelar);
 
