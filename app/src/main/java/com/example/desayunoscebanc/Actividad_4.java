@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Actividad_4 extends AppCompatActivity {
 
@@ -66,13 +67,14 @@ public class Actividad_4 extends AppCompatActivity {
                 if(codigo.getText().length()!=0 && direccion.getText().length()!=0 && telefono.getText().length()!=0 && email.getText().length()!=0){
 
                 }else if(codigo.getText().length()==0){
+                    Toast.makeText(getApplicationContext(), "Le falta introducir el código", Toast.LENGTH_SHORT).show();
 
                 }else if (direccion.getText().length()==0){
-
+                    Toast.makeText(getApplicationContext(), "Le falta introducir la dirección", Toast.LENGTH_SHORT).show();
                 }else if(telefono.getText().length()==0){
-
+                    Toast.makeText(getApplicationContext(), "Le falta introducir el teléfono", Toast.LENGTH_SHORT).show();
                 }else{
-
+                    Toast.makeText(getApplicationContext(), "Le falta introducir el Email", Toast.LENGTH_SHORT).show();
                 }
             }
         });
