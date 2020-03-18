@@ -10,6 +10,9 @@ public class Producto {
         precio=pr;
         cantidad=cant;
     }
+    public Producto(){
+
+    }
 
     public String getNombre(){
         return nombre;

@@ -56,70 +56,103 @@ public class Actividad_3 extends AppCompatActivity {
         pina=bun.getInt("pina");
 
         ArrayList <Producto> listaProductos=new ArrayList<>();
-
+        Producto cafes=new Producto();
+        Producto tes=new Producto();
+        Producto infus=new Producto();
+        Producto cacaos=new Producto();
+        Producto aguas=new Producto();
+        Producto suizos= new Producto();
+        Producto croissants= new Producto();
+        Producto bizcochos=new Producto();
+        Producto tortillas=new Producto();
+        Producto jamones=new Producto();
+        Producto chatkas= new Producto();
+        Producto sandias=new Producto();
+        Producto melones=new Producto();
+        Producto pinas=new Producto();
         if(cafe>0){
-            Producto cafes=new Producto("Cafe",cafe,1);
+            cafes=new Producto("Cafe",cafe,1);
             listaProductos.add(cafes);
         }
         if(te>0){
-            Producto tes=new Producto("Te",te,0.70);
+            tes=new Producto("Te",te,0.70);
             listaProductos.add(tes);
         }
         if(infusion>0){
-            Producto infus=new Producto("Infusion",infusion,0.80);
+            infus=new Producto("Infusion",infusion,0.80);
             listaProductos.add(infus);
         }
         if(cacao>0){
-            Producto cacaos=new Producto("Cacao",cacao,1.25);
+            cacaos=new Producto("Cacao",cacao,1.25);
             listaProductos.add(cacaos);
         }
         if(agua>0){
-            Producto aguas=new Producto("Agua",agua,0.60);
+            aguas=new Producto("Agua",agua,0.60);
             listaProductos.add(aguas);
         }
         if(suizo>0){
-            Producto suizos=new Producto("Bollo Suizo",suizo,1.90);
+            suizos=new Producto("Bollo Suizo",suizo,1.90);
             listaProductos.add(suizos);
         }
         if(croissant>0){
-            Producto croissants=new Producto("Croissant",croissant,2);
+            croissants=new Producto("Croissant",croissant,2);
             listaProductos.add(croissants);
         }
         if(bizcocho>0){
-            Producto bizcochos=new Producto("Bizcocho",bizcocho,2);
+            bizcochos=new Producto("Bizcocho",bizcocho,2);
             listaProductos.add(bizcochos);
         }
         if(tortilla>0){
-            Producto tortillas=new Producto("Tortilla",tortilla,2.60);
+            tortillas=new Producto("Tortilla",tortilla,2.60);
             listaProductos.add(tortillas);
         }
         if (jamon>0){
-            Producto jamones=new Producto("Jamon",jamon,2.80);
+            jamones=new Producto("Jamon",jamon,2.80);
             listaProductos.add(jamones);
         }
         if(chatka>0){
-            Producto chatkas=new Producto("Chatka",chatka,2.80);
+            chatkas=new Producto("Chatka",chatka,2.80);
             listaProductos.add(chatkas);
         }
         if(sandia>0){
-            Producto sandias=new Producto("Sandia",sandia,1);
+            sandias=new Producto("Sandia",sandia,1);
             listaProductos.add(sandias);
         }
         if(melon>0){
-            Producto melones=new Producto("Melon",melon,1);
+            melones=new Producto("Melon",melon,1);
             listaProductos.add(melones);
         }
         if(pina>0){
-            Producto pinas=new Producto("Piña",melon,1);
+            pinas=new Producto("Piña",melon,1);
             listaProductos.add(pinas);
         }
+
         ProductoListAdapter adaptador=new ProductoListAdapter(this,R.layout.producto_adaptador,listaProductos);
         lista.setAdapter(adaptador);
+        final double precioFinal=((cafes.getPrecio())*(cafes.getCantidad())+
+                (tes.getPrecio())*(tes.getCantidad())+
+                (infus.getPrecio())*(infus.getCantidad())+
+                (cacaos.getPrecio())*(cacaos.getCantidad())+
+                (aguas.getPrecio())*(aguas.getCantidad())+
+                (suizos.getPrecio())*(suizos.getCantidad())+
+                (croissants.getPrecio())*(croissants.getCantidad())+
+                (bizcochos.getPrecio())*(bizcochos.getCantidad())+
+                (sandias.getPrecio())*(sandias.getCantidad())+
+                (tortillas.getPrecio())*(tortillas.getCantidad())+
+                (jamones.getPrecio())*(jamones.getCantidad())+
+                (chatkas.getPrecio())*(chatkas.getCantidad())+
+                (melones.getPrecio())*(melones.getCantidad())+
+                (pinas.getPrecio())*(pinas.getCantidad()));
+
+        txtPrecioFinal.setText(precioFinal+" €");
 
         validar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Actividad_3.this,Actividad_4.class);
+                Bundle bun=new Bundle();
+                bun.putDouble("precioFinal",precioFinal);
+                intent.putExtras(bun);
                 startActivity(intent);
             }
         });

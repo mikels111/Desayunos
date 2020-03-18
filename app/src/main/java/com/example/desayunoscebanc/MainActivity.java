@@ -26,13 +26,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#21A5C5")));
 
         //Base de Datos
-        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 1);
-        SQLiteDatabase db = bdDesayunos.getWritableDatabase();
-        try {
-            db.execSQL("INSERT INTO Cliente(CodCliente,Direccion,Telefono,Email) VALUES(1,'Calle Zubieta','943875621','antonio11@gmail.com');");
-        }catch(Exception e){
+        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 8);
+        SQLiteDatabase bd = bdDesayunos.getWritableDatabase();
 
-        }
 
         //Botones
         pedido=findViewById(R.id.btnPedido);
