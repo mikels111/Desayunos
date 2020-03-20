@@ -41,7 +41,7 @@ public class Actividad_4 extends AppCompatActivity {
         final double preciofinal=bun.getDouble("precioFinal");
 
         //Base de Datos
-        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 8);
+        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 10);
         final SQLiteDatabase bd = bdDesayunos.getWritableDatabase();
 
         contrasena.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -76,6 +76,9 @@ public class Actividad_4 extends AppCompatActivity {
                         c.moveToFirst();
                         codigo=c.getInt(0);
                         bd.execSQL("INSERT INTO Pedido(CodCliente,Total,FechaPed) VALUES('"+codigo+"','"+preciofinal+"',datetime('now','localtime'))");
+                        bd.execSQL("INSERT INTO Linea(CodProducto,codPedido,Cantidad) VALUES()");
+                        Toast aviso = Toast.makeText(getApplicationContext(), "Gracias por su visita, pedido validado a nombre de "+nombre.getText(), Toast.LENGTH_SHORT);
+                        aviso.show();
                     }else{
                         c=bd.rawQuery("SELECT CodCliente FROM Cliente WHERE Nombre='"+nombre.getText()+"'",null);
                         c.moveToFirst();
