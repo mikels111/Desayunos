@@ -38,7 +38,7 @@ public class Actividad_3 extends AppCompatActivity {
         salir=findViewById(R.id.btnCancelar);
 
         Bundle bun=getIntent().getExtras();
-        int cafe,te,infusion,cacao,agua,suizo,croissant,bizcocho,tortilla,jamon,chatka,sandia,melon,pina;
+        final int cafe,te,infusion,cacao,agua,suizo,croissant,bizcocho,tortilla,jamon,chatka,sandia,melon,pina;
 
         cafe=bun.getInt("cantCafe");
         te=bun.getInt("te");
@@ -152,6 +152,20 @@ public class Actividad_3 extends AppCompatActivity {
                 Intent intent=new Intent(Actividad_3.this,Actividad_4.class);
                 Bundle bun=new Bundle();
                 bun.putDouble("precioFinal",precioFinal);
+                bun.putInt("cantCafe",cafe);
+                bun.putInt("cantTe",te);
+                bun.putInt("cantInfus",infusion);
+                bun.putInt("cantCacao",cacao);
+                bun.putInt("cantAgua",agua);
+                bun.putInt("cantSuizo",suizo);
+                bun.putInt("cantCroissant",croissant);
+                bun.putInt("cantBizcocho",bizcocho);
+                bun.putInt("cantTortilla",tortilla);
+                bun.putInt("cantJamon",jamon);
+                bun.putInt("cantChatka",chatka);
+                bun.putInt("cantSandia",sandia);
+                bun.putInt("cantMelon",melon);
+                bun.putInt("cantPina",pina);
                 intent.putExtras(bun);
                 startActivity(intent);
             }

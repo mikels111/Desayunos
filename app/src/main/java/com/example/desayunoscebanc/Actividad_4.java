@@ -17,6 +17,7 @@ public class Actividad_4 extends AppCompatActivity {
 
     Button aceptar;
     EditText contrasena,nombre,direccion,telefono,email;
+    TextView prueba;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +36,24 @@ public class Actividad_4 extends AppCompatActivity {
         direccion=findViewById(R.id.editDireccion);
         telefono=findViewById(R.id.editTelefono);
         email=findViewById(R.id.editEmail);
+        prueba=findViewById(R.id.textView27);
 
         //Bundle
         Bundle bun=getIntent().getExtras();
+        final int cantCafe=bun.getInt("cantCafe");
+        final int cantTe=bun.getInt("cannTe");
+        final int cantInfus=bun.getInt("cantInfus");
+        final int cantCacao=bun.getInt("cantCacao");
+        final int cantAgua=bun.getInt("cantAgua");
+        final int cantSuizo=bun.getInt("cantSuizo");
+        final int cantCroissant=bun.getInt("cantCroissant");
+        final int cantBizcocho=bun.getInt("cantBizcocho");
+        final int cantTortilla=bun.getInt("cantTortilla");
+        final int cantJamon=bun.getInt("cantJamon");
+        final int cantChatka=bun.getInt("cantChatka");
+        final int cantSandia=bun.getInt("cantSandia");
+        final int cantMelon=bun.getInt("cantMelon");
+        final int cantPina=bun.getInt("cantPina");
         final double preciofinal=bun.getDouble("precioFinal");
 
         //Base de Datos
@@ -76,7 +92,51 @@ public class Actividad_4 extends AppCompatActivity {
                         c.moveToFirst();
                         codigo=c.getInt(0);
                         bd.execSQL("INSERT INTO Pedido(CodCliente,Total,FechaPed) VALUES('"+codigo+"','"+preciofinal+"',datetime('now','localtime'))");
-                        bd.execSQL("INSERT INTO Linea(CodProducto,codPedido,Cantidad) VALUES()");
+                        c=bd.rawQuery("SELECT codPedido FROM Pedido WHERE codCliente='"+codigo+"' AND FechaPed=datetime('now','localtime')",null);
+                        c.moveToFirst();
+                        int codigoPed=c.getInt(0);
+                        if(cantCafe>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(1,'"+codigoPed+"','"+cantCafe+"')");
+                        }
+                        if(cantTe>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(2,'"+codigoPed+"','"+cantTe+"')");
+                        }
+                        if(cantInfus>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(3,'"+codigoPed+"','"+cantInfus+"')");
+                        }
+                        if(cantCacao>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(4,'"+codigoPed+"','"+cantCacao+"')");
+                        }
+                        if(cantAgua>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(5,'"+codigoPed+"','"+cantAgua+"')");
+                        }
+                        if(cantSuizo>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(6,'"+codigoPed+"','"+cantSuizo+"')");
+                        }
+                        if(cantCroissant>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(7,'"+codigoPed+"','"+cantCroissant+"')");
+                        }
+                        if(cantBizcocho>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(8,'"+codigoPed+"','"+cantBizcocho+"')");
+                        }
+                        if(cantTortilla>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(9,'"+codigoPed+"','"+cantTortilla+"')");
+                        }
+                        if(cantJamon>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(10,'"+codigoPed+"','"+cantJamon+"')");
+                        }
+                        if(cantChatka>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(11,'"+codigoPed+"','"+cantChatka+"')");
+                        }
+                        if(cantSandia>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(12,'"+codigoPed+"','"+cantSandia+"')");
+                        }
+                        if(cantMelon>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(13,'"+codigoPed+"','"+cantMelon+"')");
+                        }
+                        if(cantPina>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(14,'"+codigoPed+"','"+cantPina+"')");
+                        }
                         Toast aviso = Toast.makeText(getApplicationContext(), "Gracias por su visita, pedido validado a nombre de "+nombre.getText(), Toast.LENGTH_SHORT);
                         aviso.show();
                     }else{
@@ -84,6 +144,51 @@ public class Actividad_4 extends AppCompatActivity {
                         c.moveToFirst();
                         codigo=c.getInt(0);
                         bd.execSQL("INSERT INTO Pedido(CodCliente,total,FechaPed) VALUES('"+codigo+"','"+preciofinal+"',datetime('now','localtime'))");
+                        c=bd.rawQuery("SELECT codPedido FROM Pedido WHERE codCliente='"+codigo+"' AND FechaPed=datetime('now','localtime')",null);
+                        c.moveToFirst();
+                        int codigoPed=c.getInt(0);
+                        if(cantCafe>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(1,'"+codigoPed+"','"+cantCafe+"')");
+                        }
+                        if(cantTe>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(2,'"+codigoPed+"','"+cantTe+"')");
+                        }
+                        if(cantInfus>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(3,'"+codigoPed+"','"+cantInfus+"')");
+                        }
+                        if(cantCacao>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(4,'"+codigoPed+"','"+cantCacao+"')");
+                        }
+                        if(cantAgua>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(5,'"+codigoPed+"','"+cantAgua+"')");
+                        }
+                        if(cantSuizo>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(6,'"+codigoPed+"','"+cantSuizo+"')");
+                        }
+                        if(cantCroissant>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(7,'"+codigoPed+"','"+cantCroissant+"')");
+                        }
+                        if(cantBizcocho>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(8,'"+codigoPed+"','"+cantBizcocho+"')");
+                        }
+                        if(cantTortilla>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(9,'"+codigoPed+"','"+cantTortilla+"')");
+                        }
+                        if(cantJamon>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(10,'"+codigoPed+"','"+cantJamon+"')");
+                        }
+                        if(cantChatka>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(11,'"+codigoPed+"','"+cantChatka+"')");
+                        }
+                        if(cantSandia>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(12,'"+codigoPed+"','"+cantSandia+"')");
+                        }
+                        if(cantMelon>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(13,'"+codigoPed+"','"+cantMelon+"')");
+                        }
+                        if(cantPina>0){
+                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(14,'"+codigoPed+"','"+cantPina+"')");
+                        }
                         Toast aviso = Toast.makeText(getApplicationContext(), "Gracias por su visita, pedido validado a nombre de "+nombre.getText(), Toast.LENGTH_SHORT);
                         aviso.show();
                     }
