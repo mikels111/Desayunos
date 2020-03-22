@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -55,7 +56,7 @@ public class Actividad_3 extends AppCompatActivity {
         melon=bun.getInt("melon");
         pina=bun.getInt("pina");
 
-        ArrayList <Producto> listaProductos=new ArrayList<>();
+        final ArrayList <Producto> listaProductos=new ArrayList<>();
         Producto cafes=new Producto();
         Producto tes=new Producto();
         Producto infus=new Producto();
@@ -149,24 +150,39 @@ public class Actividad_3 extends AppCompatActivity {
         validar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Actividad_3.this,Actividad_4.class);
-                Bundle bun=new Bundle();
-                bun.putDouble("precioFinal",precioFinal);
-                bun.putInt("cantCafe",cafe);
-                bun.putInt("cantTe",te);
-                bun.putInt("cantInfus",infusion);
-                bun.putInt("cantCacao",cacao);
-                bun.putInt("cantAgua",agua);
-                bun.putInt("cantSuizo",suizo);
-                bun.putInt("cantCroissant",croissant);
-                bun.putInt("cantBizcocho",bizcocho);
-                bun.putInt("cantTortilla",tortilla);
-                bun.putInt("cantJamon",jamon);
-                bun.putInt("cantChatka",chatka);
-                bun.putInt("cantSandia",sandia);
-                bun.putInt("cantMelon",melon);
-                bun.putInt("cantPina",pina);
-                intent.putExtras(bun);
+                if(listaProductos.isEmpty()){
+                    Toast aviso = Toast.makeText(getApplicationContext(), "No hay productos seleccionados", Toast.LENGTH_SHORT);
+                    aviso.show();
+                }else {
+                    Intent intent=new Intent(Actividad_3.this,Actividad_4.class);
+                    Bundle bun=new Bundle();
+                    bun.putDouble("precioFinal",precioFinal);
+                    bun.putInt("cantCafe",cafe);
+                    bun.putInt("cantTe",te);
+                    bun.putInt("cantInfus",infusion);
+                    bun.putInt("cantCacao",cacao);
+                    bun.putInt("cantAgua",agua);
+                    bun.putInt("cantSuizo",suizo);
+                    bun.putInt("cantCroissant",croissant);
+                    bun.putInt("cantBizcocho",bizcocho);
+                    bun.putInt("cantTortilla",tortilla);
+                    bun.putInt("cantJamon",jamon);
+                    bun.putInt("cantChatka",chatka);
+                    bun.putInt("cantSandia",sandia);
+                    bun.putInt("cantMelon",melon);
+                    bun.putInt("cantPina",pina);
+                    intent.putExtras(bun);
+                    startActivity(intent);
+                }
+
+
+            }
+        });
+
+        salir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Actividad_3.this,MainActivity.class);
                 startActivity(intent);
             }
         });

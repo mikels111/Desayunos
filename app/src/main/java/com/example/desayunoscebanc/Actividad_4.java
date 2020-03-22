@@ -2,11 +2,14 @@ package com.example.desayunoscebanc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +39,7 @@ public class Actividad_4 extends AppCompatActivity {
         direccion=findViewById(R.id.editDireccion);
         telefono=findViewById(R.id.editTelefono);
         email=findViewById(R.id.editEmail);
-        prueba=findViewById(R.id.textView27);
+        //prueba=findViewById(R.id.textView27);
 
         //Bundle
         Bundle bun=getIntent().getExtras();
@@ -73,10 +76,65 @@ public class Actividad_4 extends AppCompatActivity {
                             email.setText(c.getString(4));
                         }while(c.moveToNext());
                     }
+                    if(contrasena.getText().length()==0){
+                        contrasena.setBackgroundResource(R.drawable.color_rojo);
+                    }else{
+                        contrasena.setBackgroundResource(R.drawable.color_gris);
+                    }
                 }
             }
         });
 
+        nombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    if(nombre.getText().length()==0){
+                        nombre.setBackgroundResource(R.drawable.color_rojo);
+                    }else{
+                        nombre.setBackgroundResource(R.drawable.color_gris);
+                    }
+                }
+            }
+        });
+        telefono.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    if(telefono.getText().length()==0){
+                        telefono.setBackgroundResource(R.drawable.color_rojo);
+                    }else{
+                        telefono.setBackgroundResource(R.drawable.color_gris);
+                    }
+                }
+            }
+        });
+
+        email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    if(email.getText().length()==0){
+                        email.setBackgroundResource(R.drawable.color_rojo);
+                    }else{
+                        email.setBackgroundResource(R.drawable.color_gris);
+                    }
+                }
+            }
+        });
+
+        direccion.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    if(direccion.getText().length()==0){
+                        direccion.setBackgroundResource(R.drawable.color_rojo);
+                    }else{
+                        direccion.setBackgroundResource(R.drawable.color_gris);
+                    }
+                }
+            }
+        });
 
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,8 +195,29 @@ public class Actividad_4 extends AppCompatActivity {
                         if(cantPina>0){
                             bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(14,'"+codigoPed+"','"+cantPina+"')");
                         }
-                        Toast aviso = Toast.makeText(getApplicationContext(), "Gracias por su visita, pedido validado a nombre de "+nombre.getText(), Toast.LENGTH_SHORT);
+                        final Toast aviso = Toast.makeText(getApplicationContext(), "Gracias por su visita, pedido validado a nombre de "+nombre.getText(), Toast.LENGTH_SHORT);
+
+                        //Control de la duración del Toast
+                        CountDownTimer toastCountDown;
+                        int segundos=10000;
+                        toastCountDown = new CountDownTimer(segundos, 1000 /*Tick duration*/) {
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+                                aviso.show();
+                                aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                aviso.cancel();
+                            }
+                        };
+                        aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
                         aviso.show();
+                        toastCountDown.start();
+                        Intent intent=new Intent(Actividad_4.this,MainActivity.class);
+                        startActivity(intent);
+
                     }else{
                         c=bd.rawQuery("SELECT CodCliente FROM Cliente WHERE Nombre='"+nombre.getText()+"'",null);
                         c.moveToFirst();
@@ -189,17 +268,43 @@ public class Actividad_4 extends AppCompatActivity {
                         if(cantPina>0){
                             bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(14,'"+codigoPed+"','"+cantPina+"')");
                         }
-                        Toast aviso = Toast.makeText(getApplicationContext(), "Gracias por su visita, pedido validado a nombre de "+nombre.getText(), Toast.LENGTH_SHORT);
+                        final Toast aviso = Toast.makeText(getApplicationContext(), "Gracias por su visita, pedido validado a nombre de "+nombre.getText(), Toast.LENGTH_SHORT);
+
+                        //Control de la duración del Toast
+                        CountDownTimer toastCountDown;
+                        int segundos=10000;
+                        toastCountDown = new CountDownTimer(segundos, 1000 /*Tick duration*/) {
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+                                aviso.show();
+                                aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                aviso.cancel();
+                            }
+                        };
+                        aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
                         aviso.show();
+                        toastCountDown.start();
+                        Intent intent=new Intent(Actividad_4.this,MainActivity.class);
+                        startActivity(intent);
+
                     }
                 }else{
                     Toast.makeText(getApplicationContext(), "Le falta algún dato por rellenar", Toast.LENGTH_SHORT).show();
                 }
-
+                //Control de avisos de campos vacios
                 if(contrasena.getText().length()==0){
                     contrasena.setBackgroundResource(R.drawable.color_rojo);
                 }else{
                     contrasena.setBackgroundResource(R.drawable.color_gris);
+                }
+                if(nombre.getText().length()==0){
+                    nombre.setBackgroundResource(R.drawable.color_rojo);
+                }else{
+                    nombre.setBackgroundResource(R.drawable.color_gris);
                 }
                 if (direccion.getText().length()==0){
                     direccion.setBackgroundResource(R.drawable.color_rojo);
