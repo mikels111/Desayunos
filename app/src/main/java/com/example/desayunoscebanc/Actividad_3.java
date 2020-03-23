@@ -145,7 +145,8 @@ public class Actividad_3 extends AppCompatActivity {
                 (melones.getPrecio())*(melones.getCantidad())+
                 (pinas.getPrecio())*(pinas.getCantidad()));
 
-        txtPrecioFinal.setText(precioFinal+" €");
+
+        txtPrecioFinal.setText(String.format("%.2f €", precioFinal));
 
         validar.setOnClickListener(new View.OnClickListener() {
             @Override
