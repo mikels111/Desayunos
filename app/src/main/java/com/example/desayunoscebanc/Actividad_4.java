@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.telephony.SmsManager;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -16,11 +17,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class Actividad_4 extends AppCompatActivity {
 
     Button aceptar;
     EditText contrasena,nombre,direccion,telefono,email;
     TextView prueba;
+    public static final String DATE_FORMAT_2 = "dd-MM-yyyy HH:mm:ss";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,15 +151,23 @@ public class Actividad_4 extends AppCompatActivity {
                     c.moveToFirst();
                     int count=c.getInt(0);
                     int codigo;
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_2);
+                    dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+                    Date today = Calendar.getInstance().getTime();
+                    //datetime('now','localtime')
                     if(count==0){
                         bd.execSQL("INSERT INTO Cliente(Contrasena,Nombre,Direccion,Telefono,Email) VALUES('"+contrasena.getText()+"','"+nombre.getText()+"','"+direccion.getText()+"','"+telefono.getText()+"','"+email.getText()+"')");
                         c=bd.rawQuery("SELECT CodCliente FROM Cliente WHERE Nombre='"+nombre.getText()+"'",null);
                         c.moveToFirst();
                         codigo=c.getInt(0);
-                        bd.execSQL("INSERT INTO Pedido(CodCliente,Total,FechaPed) VALUES('"+codigo+"','"+preciofinal+"',datetime('now','localtime'))");
-                        c=bd.rawQuery("SELECT codPedido FROM Pedido WHERE codCliente='"+codigo+"' AND FechaPed=datetime('now','localtime')",null);
+                        bd.execSQL("INSERT INTO Pedido(CodCliente,Total,FechaPed) VALUES('"+codigo+"','"+preciofinal+"','"+dateFormat.format(today)+"')");
+                        //c=bd.rawQuery("SELECT codPedido FROM Pedido WHERE codCliente='"+codigo+"' AND FechaPed='"+dateFormat.format(today)+"'",null);
+                        c=bd.rawQuery("SELECT codPedido,CodCliente,Total FROM Pedido WHERE codPedido = (SELECT MAX(codPedido) FROM Pedido WHERE codCliente = '"+codigo+"')",null);
                         c.moveToFirst();
                         int codigoPed=c.getInt(0);
+                        int codCliente=c.getInt(1);
+                        int total=c.getInt(2);
                         if(cantCafe>0){
                             bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(1,'"+codigoPed+"','"+cantCafe+"')");
                         }
@@ -195,37 +210,52 @@ public class Actividad_4 extends AppCompatActivity {
                         if(cantPina>0){
                             bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(14,'"+codigoPed+"','"+cantPina+"')");
                         }
-                        final Toast aviso = Toast.makeText(getApplicationContext(), "Gracias por su visita, pedido validado a nombre de "+nombre.getText(), Toast.LENGTH_SHORT);
 
                         //Control de la duración del Toast
-                        CountDownTimer toastCountDown;
-                        int segundos=10000;
-                        toastCountDown = new CountDownTimer(segundos, 1000 /*Tick duration*/) {
-                            @Override
-                            public void onTick(long millisUntilFinished) {
-                                aviso.show();
-                                aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
-                            }
 
-                            @Override
-                            public void onFinish() {
-                                aviso.cancel();
-                            }
-                        };
-                        aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
-                        aviso.show();
-                        toastCountDown.start();
+
                         Intent intent=new Intent(Actividad_4.this,MainActivity.class);
+
+                        try{
+                            String textoMsg="Pedido realizado "+codigoPed+", por el cliente"+codCliente+",fecha "+dateFormat.format(today)+".Importe total: "+total;
+                            SmsManager sms=SmsManager.getDefault();
+                            sms.sendTextMessage(telefono.getText().toString(),null,textoMsg,null,null);
+                            final Toast aviso=Toast.makeText(getApplicationContext(), "Sms enviado al "+telefono.getText().toString()+" con los detalles del pedido", Toast.LENGTH_SHORT);
+
+                            CountDownTimer toastCountDown;
+                            int segundos=100000;
+                            toastCountDown = new CountDownTimer(segundos, 1000 /*Tick duration*/) {
+                                @Override
+                                public void onTick(long millisUntilFinished) {
+                                    aviso.show();
+                                    aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
+                                }
+                                @Override
+                                public void onFinish() {
+                                    aviso.cancel();
+                                }
+                            };
+                            aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
+                            aviso.show();
+                            toastCountDown.start();
+
+                        }catch(Exception e){
+                            Toast t=Toast.makeText(getApplicationContext(), "Fallo sms", Toast.LENGTH_SHORT);
+                            t.show();
+                        }
                         startActivity(intent);
 
                     }else{
                         c=bd.rawQuery("SELECT CodCliente FROM Cliente WHERE Nombre='"+nombre.getText()+"'",null);
                         c.moveToFirst();
                         codigo=c.getInt(0);
-                        bd.execSQL("INSERT INTO Pedido(CodCliente,total,FechaPed) VALUES('"+codigo+"','"+preciofinal+"',datetime('now','localtime'))");
-                        c=bd.rawQuery("SELECT codPedido FROM Pedido WHERE codCliente='"+codigo+"' AND FechaPed=datetime('now','localtime')",null);
+                        bd.execSQL("INSERT INTO Pedido(CodCliente,total,FechaPed) VALUES('"+codigo+"','"+preciofinal+"','"+dateFormat.format(today)+"')");
+                        //c=bd.rawQuery("SELECT codPedido FROM Pedido WHERE codCliente='"+codigo+"' AND FechaPed='"+dateFormat.format(today)+"'",null);
+                        c=bd.rawQuery("SELECT codPedido,CodCliente,Total FROM Pedido WHERE codPedido = (SELECT MAX(codPedido) FROM Pedido WHERE codCliente = '"+codigo+"')",null);
                         c.moveToFirst();
                         int codigoPed=c.getInt(0);
+                        int codCliente=c.getInt(1);
+                        int total=c.getInt(2);
                         if(cantCafe>0){
                             bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(1,'"+codigoPed+"','"+cantCafe+"')");
                         }
@@ -268,28 +298,39 @@ public class Actividad_4 extends AppCompatActivity {
                         if(cantPina>0){
                             bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(14,'"+codigoPed+"','"+cantPina+"')");
                         }
-                        final Toast aviso = Toast.makeText(getApplicationContext(), "Gracias por su visita, pedido validado a nombre de "+nombre.getText(), Toast.LENGTH_SHORT);
 
                         //Control de la duración del Toast
-                        CountDownTimer toastCountDown;
-                        int segundos=10000;
-                        toastCountDown = new CountDownTimer(segundos, 1000 /*Tick duration*/) {
-                            @Override
-                            public void onTick(long millisUntilFinished) {
-                                aviso.show();
-                                aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
-                            }
 
-                            @Override
-                            public void onFinish() {
-                                aviso.cancel();
-                            }
-                        };
-                        aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
-                        aviso.show();
-                        toastCountDown.start();
+
                         Intent intent=new Intent(Actividad_4.this,MainActivity.class);
+                        try{
+                            String textoMsg="Pedido realizado "+codigoPed+", por el cliente"+codCliente+",fecha "+dateFormat.format(today)+".Importe total: "+total;
+                            SmsManager sms=SmsManager.getDefault();
+                            sms.sendTextMessage(telefono.getText().toString(),null,textoMsg,null,null);
+                            final Toast aviso=Toast.makeText(getApplicationContext(), "Sms enviado al "+telefono.getText().toString()+" con los detalles del pedido", Toast.LENGTH_SHORT);
+                            aviso.show();
+                            CountDownTimer toastCountDown;
+                            int segundos=10000;
+                            toastCountDown = new CountDownTimer(segundos, 1000 ) {
+                                @Override
+                                public void onTick(long millisUntilFinished) {
+                                    aviso.show();
+                                    aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
+                                }
+                                @Override
+                                public void onFinish() {
+                                    aviso.cancel();
+                                }
+                            };
+                            aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
+                            aviso.show();
+                            toastCountDown.start();
+                        }catch(Exception e){
+                            Toast t=Toast.makeText(getApplicationContext(), "Fallo de sms", Toast.LENGTH_SHORT);
+                            t.show();
+                        }
                         startActivity(intent);
+
 
                     }
                 }else{
