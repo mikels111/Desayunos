@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.telephony.SmsManager;
@@ -147,7 +148,7 @@ public class Actividad_4 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(contrasena.getText().length()!=0 && direccion.getText().length()!=0 && telefono.getText().length()!=0 && email.getText().length()!=0){
-                    Cursor c=bd.rawQuery("SELECT count(*) FROM Cliente WHERE Nombre='"+nombre.getText()+"'",null);
+                    Cursor c=bd.rawQuery("SELECT count(*) FROM Cliente WHERE Nombre='"+nombre.getText()+"' AND Contrasena='"+contrasena.getText()+"'",null);
                     c.moveToFirst();
                     int count=c.getInt(0);
                     int codigo;
@@ -157,93 +158,108 @@ public class Actividad_4 extends AppCompatActivity {
                     Date today = Calendar.getInstance().getTime();
                     //datetime('now','localtime')
                     if(count==0){
-                        bd.execSQL("INSERT INTO Cliente(Contrasena,Nombre,Direccion,Telefono,Email) VALUES('"+contrasena.getText()+"','"+nombre.getText()+"','"+direccion.getText()+"','"+telefono.getText()+"','"+email.getText()+"')");
-                        c=bd.rawQuery("SELECT CodCliente FROM Cliente WHERE Nombre='"+nombre.getText()+"'",null);
+                        c=bd.rawQuery("SELECT count(*) FROM Cliente WHERE Nombre='"+nombre.getText()+"'",null);
                         c.moveToFirst();
-                        codigo=c.getInt(0);
-                        bd.execSQL("INSERT INTO Pedido(CodCliente,Total,FechaPed) VALUES('"+codigo+"','"+preciofinal+"','"+dateFormat.format(today)+"')");
-                        //c=bd.rawQuery("SELECT codPedido FROM Pedido WHERE codCliente='"+codigo+"' AND FechaPed='"+dateFormat.format(today)+"'",null);
-                        c=bd.rawQuery("SELECT codPedido,CodCliente,Total FROM Pedido WHERE codPedido = (SELECT MAX(codPedido) FROM Pedido WHERE codCliente = '"+codigo+"')",null);
-                        c.moveToFirst();
-                        int codigoPed=c.getInt(0);
-                        int codCliente=c.getInt(1);
-                        int total=c.getInt(2);
-                        if(cantCafe>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(1,'"+codigoPed+"','"+cantCafe+"')");
-                        }
-                        if(cantTe>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(2,'"+codigoPed+"','"+cantTe+"')");
-                        }
-                        if(cantInfus>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(3,'"+codigoPed+"','"+cantInfus+"')");
-                        }
-                        if(cantCacao>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(4,'"+codigoPed+"','"+cantCacao+"')");
-                        }
-                        if(cantAgua>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(5,'"+codigoPed+"','"+cantAgua+"')");
-                        }
-                        if(cantSuizo>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(6,'"+codigoPed+"','"+cantSuizo+"')");
-                        }
-                        if(cantCroissant>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(7,'"+codigoPed+"','"+cantCroissant+"')");
-                        }
-                        if(cantBizcocho>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(8,'"+codigoPed+"','"+cantBizcocho+"')");
-                        }
-                        if(cantTortilla>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(9,'"+codigoPed+"','"+cantTortilla+"')");
-                        }
-                        if(cantJamon>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(10,'"+codigoPed+"','"+cantJamon+"')");
-                        }
-                        if(cantChatka>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(11,'"+codigoPed+"','"+cantChatka+"')");
-                        }
-                        if(cantSandia>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(12,'"+codigoPed+"','"+cantSandia+"')");
-                        }
-                        if(cantMelon>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(13,'"+codigoPed+"','"+cantMelon+"')");
-                        }
-                        if(cantPina>0){
-                            bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(14,'"+codigoPed+"','"+cantPina+"')");
-                        }
-
-                        //Control de la duración del Toast
-
-
-                        Intent intent=new Intent(Actividad_4.this,MainActivity.class);
-
-                        try{
-                            String textoMsg="Pedido realizado "+codigoPed+", por el cliente"+codCliente+",fecha "+dateFormat.format(today)+".Importe total: "+total;
-                            SmsManager sms=SmsManager.getDefault();
-                            sms.sendTextMessage(telefono.getText().toString(),null,textoMsg,null,null);
-                            final Toast aviso=Toast.makeText(getApplicationContext(), "Sms enviado al "+telefono.getText().toString()+" con los detalles del pedido", Toast.LENGTH_SHORT);
-
-                            CountDownTimer toastCountDown;
-                            int segundos=100000;
-                            toastCountDown = new CountDownTimer(segundos, 1000 /*Tick duration*/) {
-                                @Override
-                                public void onTick(long millisUntilFinished) {
-                                    aviso.show();
-                                    aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
-                                }
-                                @Override
-                                public void onFinish() {
-                                    aviso.cancel();
-                                }
-                            };
-                            aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
-                            aviso.show();
-                            toastCountDown.start();
-
-                        }catch(Exception e){
-                            Toast t=Toast.makeText(getApplicationContext(), "Fallo sms", Toast.LENGTH_SHORT);
+                        int countNomb=c.getInt(0);
+                        if(countNomb>0){
+                            Toast t=Toast.makeText(getApplicationContext(), "Ese nombre ya existe", Toast.LENGTH_SHORT);
+                            t.setGravity(Gravity.CENTER|Gravity.LEFT,320,40);
                             t.show();
+                        }else{
+                            bd.execSQL("INSERT INTO Cliente(Contrasena,Nombre,Direccion,Telefono,Email) VALUES('"+contrasena.getText()+"','"+nombre.getText()+"','"+direccion.getText()+"','"+telefono.getText()+"','"+email.getText()+"')");
+                            c=bd.rawQuery("SELECT CodCliente FROM Cliente WHERE Nombre='"+nombre.getText()+"'",null);
+                            c.moveToFirst();
+                            codigo=c.getInt(0);
+                            bd.execSQL("INSERT INTO Pedido(CodCliente,Total,FechaPed) VALUES('"+codigo+"','"+preciofinal+"','"+dateFormat.format(today)+"')");
+                            //c=bd.rawQuery("SELECT codPedido FROM Pedido WHERE codCliente='"+codigo+"' AND FechaPed='"+dateFormat.format(today)+"'",null);
+                            c=bd.rawQuery("SELECT codPedido,CodCliente,Total FROM Pedido WHERE codPedido = (SELECT MAX(codPedido) FROM Pedido WHERE codCliente = '"+codigo+"')",null);
+                            c.moveToFirst();
+                            int codigoPed=c.getInt(0);
+                            int codCliente=c.getInt(1);
+                            int total=c.getInt(2);
+                            if(cantCafe>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(1,'"+codigoPed+"','"+cantCafe+"')");
+                            }
+                            if(cantTe>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(2,'"+codigoPed+"','"+cantTe+"')");
+                            }
+                            if(cantInfus>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(3,'"+codigoPed+"','"+cantInfus+"')");
+                            }
+                            if(cantCacao>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(4,'"+codigoPed+"','"+cantCacao+"')");
+                            }
+                            if(cantAgua>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(5,'"+codigoPed+"','"+cantAgua+"')");
+                            }
+                            if(cantSuizo>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(6,'"+codigoPed+"','"+cantSuizo+"')");
+                            }
+                            if(cantCroissant>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(7,'"+codigoPed+"','"+cantCroissant+"')");
+                            }
+                            if(cantBizcocho>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(8,'"+codigoPed+"','"+cantBizcocho+"')");
+                            }
+                            if(cantTortilla>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(9,'"+codigoPed+"','"+cantTortilla+"')");
+                            }
+                            if(cantJamon>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(10,'"+codigoPed+"','"+cantJamon+"')");
+                            }
+                            if(cantChatka>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(11,'"+codigoPed+"','"+cantChatka+"')");
+                            }
+                            if(cantSandia>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(12,'"+codigoPed+"','"+cantSandia+"')");
+                            }
+                            if(cantMelon>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(13,'"+codigoPed+"','"+cantMelon+"')");
+                            }
+                            if(cantPina>0){
+                                bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(14,'"+codigoPed+"','"+cantPina+"')");
+                            }
+
+                            //Control de la duración del Toast
+
+
+                            Intent intent=new Intent(Actividad_4.this,MainActivity.class);
+
+                            try{
+                                String textoMsg="Pedido realizado "+codigoPed+", por el cliente"+codCliente+",fecha "+dateFormat.format(today)+".Importe total: "+total;
+
+
+                                String smsNumber = String.format("smsto: %s",telefono.getText().toString());
+                                Intent smsIntent=new Intent(Intent.ACTION_SENDTO);
+                                smsIntent.setData(Uri.parse(smsNumber));
+                                smsIntent.putExtra("sms_body", textoMsg);
+                                startActivity(smsIntent);
+                                final Toast aviso=Toast.makeText(getApplicationContext(), "Sms enviado al "+telefono.getText().toString()+" con los detalles del pedido", Toast.LENGTH_SHORT);
+
+                                CountDownTimer toastCountDown;
+                                int segundos=100000;
+                                toastCountDown = new CountDownTimer(segundos, 1000 ) {
+                                    @Override
+                                    public void onTick(long millisUntilFinished) {
+                                        aviso.show();
+                                        aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
+                                    }
+                                    @Override
+                                    public void onFinish() {
+                                        aviso.cancel();
+                                    }
+                                };
+                                aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
+                                aviso.show();
+                                toastCountDown.start();
+
+                            }catch(Exception e){
+                                Toast t=Toast.makeText(getApplicationContext(), "Fallo sms", Toast.LENGTH_SHORT);
+                                t.show();
+                            }
+                            startActivity(intent);
                         }
-                        startActivity(intent);
+
 
                     }else{
                         c=bd.rawQuery("SELECT CodCliente FROM Cliente WHERE Nombre='"+nombre.getText()+"'",null);
@@ -305,8 +321,15 @@ public class Actividad_4 extends AppCompatActivity {
                         Intent intent=new Intent(Actividad_4.this,MainActivity.class);
                         try{
                             String textoMsg="Pedido realizado "+codigoPed+", por el cliente"+codCliente+",fecha "+dateFormat.format(today)+".Importe total: "+total;
-                            SmsManager sms=SmsManager.getDefault();
-                            sms.sendTextMessage(telefono.getText().toString(),null,textoMsg,null,null);
+                            /*SmsManager sms=SmsManager.getDefault();
+                            sms.sendTextMessage(telefono.getText().toString(),null,textoMsg,null,null);*/
+
+                            String smsNumber = String.format("smsto: %s",telefono.getText().toString());
+                            Intent smsIntent=new Intent(Intent.ACTION_SENDTO);
+                            smsIntent.setData(Uri.parse(smsNumber));
+                            smsIntent.putExtra("sms_body", textoMsg);
+                            startActivity(smsIntent);
+
                             final Toast aviso=Toast.makeText(getApplicationContext(), "Sms enviado al "+telefono.getText().toString()+" con los detalles del pedido", Toast.LENGTH_SHORT);
                             aviso.show();
                             CountDownTimer toastCountDown;
@@ -350,17 +373,17 @@ public class Actividad_4 extends AppCompatActivity {
                 if (direccion.getText().length()==0){
                     direccion.setBackgroundResource(R.drawable.color_rojo);
                 }else{
-                    contrasena.setBackgroundResource(R.drawable.color_gris);
+                    direccion.setBackgroundResource(R.drawable.color_gris);
                 }
                 if(telefono.getText().length()==0){
                     telefono.setBackgroundResource(R.drawable.color_rojo);
                 }else{
-                    contrasena.setBackgroundResource(R.drawable.color_gris);
+                    telefono.setBackgroundResource(R.drawable.color_gris);
                 }
                 if(email.getText().length()==0){
                     email.setBackgroundResource(R.drawable.color_rojo);
                 }else{
-                    contrasena.setBackgroundResource(R.drawable.color_gris);
+                    email.setBackgroundResource(R.drawable.color_gris);
                 }
             }
         });

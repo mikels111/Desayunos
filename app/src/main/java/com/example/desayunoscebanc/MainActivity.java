@@ -14,7 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    Button pedido,salir;
+    Button pedido,salir,admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         //Botones
         pedido=findViewById(R.id.btnPedido);
         salir=findViewById(R.id.btnCancelar);
+        admin=findViewById(R.id.btnAdmin);
 
         pedido.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,Actividad_admin.class);
+                startActivity(intent);
             }
         });
 
