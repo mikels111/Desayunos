@@ -1,6 +1,8 @@
 package com.example.desayunoscebanc;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable {
     private int codCliente;
     private int contrasena;
     private String nombre;
@@ -15,6 +17,7 @@ public class Cliente {
         numero=num;
         email=correo;
     }
+
     public int getCodCliente(){
         return codCliente;
     }
