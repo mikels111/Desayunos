@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -31,10 +33,15 @@ public class Actividad_admin extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_admin);
 
+        //color en las barras
+        getWindow().setStatusBarColor(Color.parseColor("#21A5C5"));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#21A5C5")));
+
         lista=findViewById(R.id.lstClientes);
 
         final ArrayList<Cliente> listaCliente=new ArrayList<>();
 
+        //Base de Datos
         BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 10);
         final SQLiteDatabase bd = bdDesayunos.getWritableDatabase();
 
@@ -66,6 +73,7 @@ public class Actividad_admin extends AppCompatActivity{
                 //Cliente cli=new Cliente(obj);
                 intent.putExtra("cliente",obj);
                 startActivity(intent);
+                finish();
             }
         });
 

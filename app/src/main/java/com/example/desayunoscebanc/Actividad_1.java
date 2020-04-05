@@ -110,6 +110,7 @@ public class Actividad_1 extends AppCompatActivity {
                 bundle.putInt("agua",cantAgua);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
 

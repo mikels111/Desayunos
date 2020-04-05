@@ -177,6 +177,7 @@ public class Actividad_2 extends AppCompatActivity {
 
                 intent.putExtras(bun);
                 startActivity(intent);
+                finish();
 
 
             }

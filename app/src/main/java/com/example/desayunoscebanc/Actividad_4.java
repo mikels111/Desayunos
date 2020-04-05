@@ -1,8 +1,14 @@
 package com.example.desayunoscebanc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -24,7 +30,6 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class Actividad_4 extends AppCompatActivity {
-
     Button aceptar;
     EditText contrasena,nombre,direccion,telefono,email;
     TextView prueba;
@@ -33,6 +38,16 @@ public class Actividad_4 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_4);
+
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.SEND_SMS)!=PackageManager.PERMISSION_GRANTED){
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.SEND_SMS)){
+
+            }else{
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},123);
+            }
+        }
+
 
         //color en las barras
         getWindow().setStatusBarColor(Color.parseColor("#21A5C5"));
@@ -72,6 +87,8 @@ public class Actividad_4 extends AppCompatActivity {
         final SQLiteDatabase bd = bdDesayunos.getWritableDatabase();
 
         contrasena.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus) {
@@ -154,7 +171,7 @@ public class Actividad_4 extends AppCompatActivity {
                     int codigo;
 
                     SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_2);
-                    dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+                    dateFormat.setTimeZone(TimeZone.getTimeZone("CET"));
                     Date today = Calendar.getInstance().getTime();
                     //datetime('now','localtime')
                     if(count==0){
@@ -229,11 +246,12 @@ public class Actividad_4 extends AppCompatActivity {
                                 String textoMsg="Pedido realizado "+codigoPed+", por el cliente"+codCliente+",fecha "+dateFormat.format(today)+".Importe total: "+total;
 
 
-                                String smsNumber = String.format("smsto: %s",telefono.getText().toString());
+                                /*String smsNumber = String.format("smsto: %s",telefono.getText().toString());
                                 Intent smsIntent=new Intent(Intent.ACTION_SENDTO);
                                 smsIntent.setData(Uri.parse(smsNumber));
                                 smsIntent.putExtra("sms_body", textoMsg);
-                                startActivity(smsIntent);
+                                startActivity(smsIntent);*/
+
                                 final Toast aviso=Toast.makeText(getApplicationContext(), "Sms enviado al "+telefono.getText().toString()+" con los detalles del pedido", Toast.LENGTH_SHORT);
 
                                 CountDownTimer toastCountDown;
@@ -262,6 +280,8 @@ public class Actividad_4 extends AppCompatActivity {
 
 
                     }else{
+
+
                         c=bd.rawQuery("SELECT CodCliente FROM Cliente WHERE Nombre='"+nombre.getText()+"'",null);
                         c.moveToFirst();
                         codigo=c.getInt(0);
@@ -319,19 +339,31 @@ public class Actividad_4 extends AppCompatActivity {
 
 
                         Intent intent=new Intent(Actividad_4.this,MainActivity.class);
-                        try{
-                            String textoMsg="Pedido realizado "+codigoPed+", por el cliente"+codCliente+",fecha "+dateFormat.format(today)+".Importe total: "+total;
-                            /*SmsManager sms=SmsManager.getDefault();
-                            sms.sendTextMessage(telefono.getText().toString(),null,textoMsg,null,null);*/
 
-                            String smsNumber = String.format("smsto: %s",telefono.getText().toString());
+                        //try{
+
+
+
+                            String textoMsg="Pedido realizado "+codigoPed+", por el cliente"+codCliente+",fecha "+dateFormat.format(today)+".Importe total: "+total;
+                            SmsManager sms=SmsManager.getDefault();
+                            sms.sendTextMessage(telefono.getText().toString(),null,textoMsg,null,null);
+
+                            Intent smsIntent=new Intent(Intent.ACTION_VIEW);
+                            smsIntent.putExtra("sms_body","default content");
+                            smsIntent.setType("vnd.android-dir/mms-sms");
+                            startActivity(smsIntent);
+
+                            /*String smsNumber = String.format("smsto: %s",telefono.getText().toString());
                             Intent smsIntent=new Intent(Intent.ACTION_SENDTO);
                             smsIntent.setData(Uri.parse(smsNumber));
                             smsIntent.putExtra("sms_body", textoMsg);
-                            startActivity(smsIntent);
+                            startActivity(smsIntent);*/
+
+
 
                             final Toast aviso=Toast.makeText(getApplicationContext(), "Sms enviado al "+telefono.getText().toString()+" con los detalles del pedido", Toast.LENGTH_SHORT);
                             aviso.show();
+
                             CountDownTimer toastCountDown;
                             int segundos=10000;
                             toastCountDown = new CountDownTimer(segundos, 1000 ) {
@@ -348,11 +380,12 @@ public class Actividad_4 extends AppCompatActivity {
                             aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
                             aviso.show();
                             toastCountDown.start();
-                        }catch(Exception e){
+                        /*}catch(Exception e){
                             Toast t=Toast.makeText(getApplicationContext(), "Fallo de sms", Toast.LENGTH_SHORT);
                             t.show();
-                        }
+                        }*/
                         startActivity(intent);
+                        finish();
 
 
                     }

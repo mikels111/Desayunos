@@ -25,6 +25,7 @@ public class Actividad_3 extends AppCompatActivity {
     TextView txtPrecioFinal;
     Button validar,salir;
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_3);
@@ -174,6 +175,7 @@ public class Actividad_3 extends AppCompatActivity {
                     bun.putInt("cantPina",pina);
                     intent.putExtras(bun);
                     startActivity(intent);
+                    finish();
                 }
 
 
@@ -183,17 +185,10 @@ public class Actividad_3 extends AppCompatActivity {
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Actividad_3.this,MainActivity.class);
-                startActivity(intent);
+                /*Intent intent=new Intent(Actividad_3.this,MainActivity.class);
+                startActivity(intent);*/
+                finish();
             }
         });
-
-
-
-
-
-
-
-
     }
 }
