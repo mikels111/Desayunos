@@ -13,7 +13,13 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ModificarCliente"></activity>
         <activity android:name=".Actividad_admin" />
-        <activity android:name=".Actividad_4" />
+        <activity android:name=".Actividad_4" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="message/rfc822"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".Actividad_3" />
         <activity android:name=".Actividad_2" />
         <activity android:name=".Actividad_1" />

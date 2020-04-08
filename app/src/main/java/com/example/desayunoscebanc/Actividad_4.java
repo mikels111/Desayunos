@@ -34,19 +34,21 @@ public class Actividad_4 extends AppCompatActivity {
     EditText contrasena,nombre,direccion,telefono,email;
     TextView prueba;
     public static final String DATE_FORMAT_2 = "dd-MM-yyyy HH:mm:ss";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_4);
 
-        if(ContextCompat.checkSelfPermission(this,Manifest.permission.SEND_SMS)!=PackageManager.PERMISSION_GRANTED){
+       /*if(checkSelfPermission(Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED){
 
             if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.SEND_SMS)){
 
             }else{
+
                 ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},123);
             }
-        }
+        }*/
 
 
         //color en las barras
@@ -193,7 +195,7 @@ public class Actividad_4 extends AppCompatActivity {
                             c.moveToFirst();
                             int codigoPed=c.getInt(0);
                             int codCliente=c.getInt(1);
-                            int total=c.getInt(2);
+                            double total=c.getDouble(2);
                             if(cantCafe>0){
                                 bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(1,'"+codigoPed+"','"+cantCafe+"')");
                             }
@@ -243,39 +245,22 @@ public class Actividad_4 extends AppCompatActivity {
                             Intent intent=new Intent(Actividad_4.this,MainActivity.class);
 
                             try{
-                                String textoMsg="Pedido realizado "+codigoPed+", por el cliente"+codCliente+",fecha "+dateFormat.format(today)+".Importe total: "+total;
+                                String textoMsg="Pedido realizado "+codigoPed+", por el cliente "+codCliente+", fecha "+dateFormat.format(today)+". Importe total: "+total+". Gracias por su visita";
 
+                                Intent intento=new Intent(Intent.ACTION_SEND);
+                                intento.putExtra(Intent.EXTRA_EMAIL, new String[]{email.getText().toString()});
+                                intento.putExtra(Intent.EXTRA_SUBJECT, "Pedido Cebanc Desayunos");
+                                intento.putExtra(Intent.EXTRA_TEXT, textoMsg);
+                                intento.setType("message/rfc822");
 
-                                /*String smsNumber = String.format("smsto: %s",telefono.getText().toString());
-                                Intent smsIntent=new Intent(Intent.ACTION_SENDTO);
-                                smsIntent.setData(Uri.parse(smsNumber));
-                                smsIntent.putExtra("sms_body", textoMsg);
-                                startActivity(smsIntent);*/
-
-                                final Toast aviso=Toast.makeText(getApplicationContext(), "Sms enviado al "+telefono.getText().toString()+" con los detalles del pedido", Toast.LENGTH_SHORT);
-
-                                CountDownTimer toastCountDown;
-                                int segundos=100000;
-                                toastCountDown = new CountDownTimer(segundos, 1000 ) {
-                                    @Override
-                                    public void onTick(long millisUntilFinished) {
-                                        aviso.show();
-                                        aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
-                                    }
-                                    @Override
-                                    public void onFinish() {
-                                        aviso.cancel();
-                                    }
-                                };
-                                aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
-                                aviso.show();
-                                toastCountDown.start();
+                                finish();
+                                startActivity(intent);
+                                startActivity(intento.createChooser(intento,"Escoge una aplicación"));
 
                             }catch(Exception e){
-                                Toast t=Toast.makeText(getApplicationContext(), "Fallo sms", Toast.LENGTH_SHORT);
+                                Toast t=Toast.makeText(getApplicationContext(), "error en Email", Toast.LENGTH_SHORT);
                                 t.show();
                             }
-                            startActivity(intent);
                         }
 
 
@@ -291,7 +276,7 @@ public class Actividad_4 extends AppCompatActivity {
                         c.moveToFirst();
                         int codigoPed=c.getInt(0);
                         int codCliente=c.getInt(1);
-                        int total=c.getInt(2);
+                        double total=c.getDouble(2);
                         if(cantCafe>0){
                             bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(1,'"+codigoPed+"','"+cantCafe+"')");
                         }
@@ -335,58 +320,25 @@ public class Actividad_4 extends AppCompatActivity {
                             bd.execSQL("INSERT INTO Linea(codProducto,codPedido,cantidad) VALUES(14,'"+codigoPed+"','"+cantPina+"')");
                         }
 
-                        //Control de la duración del Toast
-
-
                         Intent intent=new Intent(Actividad_4.this,MainActivity.class);
 
-                        //try{
+                        try{
+                            String textoMsg="Pedido realizado "+codigoPed+", por el cliente "+codCliente+", fecha "+dateFormat.format(today)+". Importe total: "+total+". Gracias por su visita";
 
+                            Intent intento=new Intent(Intent.ACTION_SEND);
+                            intento.putExtra(Intent.EXTRA_EMAIL, new String[]{email.getText().toString()});
+                            intento.putExtra(Intent.EXTRA_SUBJECT, "Pedido Cebanc Desayunos");
+                            intento.putExtra(Intent.EXTRA_TEXT, textoMsg);
+                            intento.setType("message/rfc822");
 
+                            finish();
+                            startActivity(intent);
+                            startActivity(intento.createChooser(intento,"Escoge una aplicación"));
 
-                            String textoMsg="Pedido realizado "+codigoPed+", por el cliente"+codCliente+",fecha "+dateFormat.format(today)+".Importe total: "+total;
-                            SmsManager sms=SmsManager.getDefault();
-                            sms.sendTextMessage(telefono.getText().toString(),null,textoMsg,null,null);
-
-                            Intent smsIntent=new Intent(Intent.ACTION_VIEW);
-                            smsIntent.putExtra("sms_body","default content");
-                            smsIntent.setType("vnd.android-dir/mms-sms");
-                            startActivity(smsIntent);
-
-                            /*String smsNumber = String.format("smsto: %s",telefono.getText().toString());
-                            Intent smsIntent=new Intent(Intent.ACTION_SENDTO);
-                            smsIntent.setData(Uri.parse(smsNumber));
-                            smsIntent.putExtra("sms_body", textoMsg);
-                            startActivity(smsIntent);*/
-
-
-
-                            final Toast aviso=Toast.makeText(getApplicationContext(), "Sms enviado al "+telefono.getText().toString()+" con los detalles del pedido", Toast.LENGTH_SHORT);
-                            aviso.show();
-
-                            CountDownTimer toastCountDown;
-                            int segundos=10000;
-                            toastCountDown = new CountDownTimer(segundos, 1000 ) {
-                                @Override
-                                public void onTick(long millisUntilFinished) {
-                                    aviso.show();
-                                    aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
-                                }
-                                @Override
-                                public void onFinish() {
-                                    aviso.cancel();
-                                }
-                            };
-                            aviso.setGravity(Gravity.CENTER|Gravity.LEFT,100,500);
-                            aviso.show();
-                            toastCountDown.start();
-                        /*}catch(Exception e){
-                            Toast t=Toast.makeText(getApplicationContext(), "Fallo de sms", Toast.LENGTH_SHORT);
+                        }catch(Exception e){
+                            Toast t=Toast.makeText(getApplicationContext(), "error en Email", Toast.LENGTH_SHORT);
                             t.show();
-                        }*/
-                        startActivity(intent);
-                        finish();
-
+                        }
 
                     }
                 }else{
