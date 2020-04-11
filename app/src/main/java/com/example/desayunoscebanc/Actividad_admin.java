@@ -39,7 +39,7 @@ public class Actividad_admin extends AppCompatActivity{
 
         lista=findViewById(R.id.lstClientes);
 
-        final ArrayList<Cliente> listaCliente=new ArrayList<>();
+        ArrayList<Cliente> listaCliente=new ArrayList<>();
 
         //Base de Datos
         BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 10);

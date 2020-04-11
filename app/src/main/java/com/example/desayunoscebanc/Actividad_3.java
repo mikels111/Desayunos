@@ -129,7 +129,7 @@ public class Actividad_3 extends AppCompatActivity {
             listaProductos.add(pinas);
         }
 
-         ProductoListAdapter adaptador=new ProductoListAdapter(this,R.layout.producto_adaptador,listaProductos);
+        ProductoListAdapter adaptador=new ProductoListAdapter(this,R.layout.producto_adaptador,listaProductos);
         lista.setAdapter(adaptador);
         final double precioFinal=((cafes.getPrecio())*(cafes.getCantidad())+
                 (tes.getPrecio())*(tes.getCantidad())+

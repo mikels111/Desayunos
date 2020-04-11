@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,Actividad_admin.class);
+                Intent intent=new Intent(MainActivity.this,Mantenimiento.class);
                 startActivity(intent);
 
             }
