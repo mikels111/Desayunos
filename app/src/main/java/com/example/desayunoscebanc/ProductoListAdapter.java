@@ -32,7 +32,7 @@ class ProductoListAdapter extends ArrayAdapter<Producto> {
         int cantidad=getItem(position).getCantidad();
         double precio=getItem(position).getPrecio();
 
-        Producto producto=new Producto(nombre,cantidad,precio);
+        //Producto producto=new Producto(nombre,cantidad,precio);
         LayoutInflater inflater= LayoutInflater.from(contexto);
         convertView =inflater.inflate(recurso,parent,false);
 

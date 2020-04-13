@@ -43,7 +43,7 @@ public class Mantenimiento extends AppCompatActivity {
         productos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Mantenimiento.this,Actividad_admin.class);
+                Intent intent=new Intent(Mantenimiento.this,Admin_productos.class);
                 startActivity(intent);
             }
         });

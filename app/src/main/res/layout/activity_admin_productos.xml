@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Admin_productos">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/HorizontalCafe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/cafe" />
+
+            <TextView
+                android:id="@+id/textView56"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Cafe"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/HorizontalTe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/te" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Té"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/HorizontalInfu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/infusion" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Infusión"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/HorizontalCacao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/cacao" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Cacao"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horizontalAgua"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Agua"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horizontalBollo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/suizo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Bollo Suizo"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horizontalCroissant"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/croissant" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Croissant"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horizontalBizco"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/bizcocho" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Bizcocho"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horizontalTortilla"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/tortilla" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Tortilla"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horizontalJamon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/jamon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Jamón"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horizontalChatka"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/chatka" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Chatka"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horizontalSandia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/sandia" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Sandía"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horizontalMelon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/melon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Melón"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horizontalPina"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="137dp"
+                android:layout_height="108dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/pina" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="Piña"
+                android:textColor="#21A5C5"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</ScrollView>
+
+</LinearLayout>
