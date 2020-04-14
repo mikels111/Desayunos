@@ -27,7 +27,7 @@
                 app:srcCompat="@mipmap/cafe" />
 
             <TextView
-                android:id="@+id/textView56"
+                android:id="@+id/txtCafe"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -50,6 +50,7 @@
                 app:srcCompat="@mipmap/te" />
 
             <TextView
+                android:id="@+id/txtTe"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -72,6 +73,7 @@
                 app:srcCompat="@mipmap/infusion" />
 
             <TextView
+                android:id="@+id/txtInfu"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -94,6 +96,7 @@
                 app:srcCompat="@mipmap/cacao" />
 
             <TextView
+                android:id="@+id/txtCacao"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -116,6 +119,7 @@
                 app:srcCompat="@mipmap/agua" />
 
             <TextView
+                android:id="@+id/txtAgua"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -138,6 +142,7 @@
                 app:srcCompat="@mipmap/suizo" />
 
             <TextView
+                android:id="@+id/txtSuizo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -160,6 +165,7 @@
                 app:srcCompat="@mipmap/croissant" />
 
             <TextView
+                android:id="@+id/txtCroissant"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -182,6 +188,7 @@
                 app:srcCompat="@mipmap/bizcocho" />
 
             <TextView
+                android:id="@+id/txtBizcocho"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -204,6 +211,7 @@
                 app:srcCompat="@mipmap/tortilla" />
 
             <TextView
+                android:id="@+id/txtTortilla"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -226,6 +234,7 @@
                 app:srcCompat="@mipmap/jamon" />
 
             <TextView
+                android:id="@+id/txtJamon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -248,6 +257,7 @@
                 app:srcCompat="@mipmap/chatka" />
 
             <TextView
+                android:id="@+id/txtChatka"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -270,6 +280,7 @@
                 app:srcCompat="@mipmap/sandia" />
 
             <TextView
+                android:id="@+id/txtSandia"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -292,6 +303,7 @@
                 app:srcCompat="@mipmap/melon" />
 
             <TextView
+                android:id="@+id/txtMelon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -314,6 +326,7 @@
                 app:srcCompat="@mipmap/pina" />
 
             <TextView
+                android:id="@+id/txtPina"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"

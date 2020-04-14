@@ -26,35 +26,39 @@ public class Actividad_1 extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#21A5C5")));
 
         //Button
-        btnSiguiente=findViewById(R.id.btnSiguiente);
-        salir=findViewById(R.id.btnCancelar);
-
+        {
+            btnSiguiente = findViewById(R.id.btnSiguiente);
+            salir = findViewById(R.id.btnCancelar);
+        }
         //ImageButton
-        cafe=findViewById(R.id.btnCafe);
-        te=findViewById(R.id.btnTe);
-        infusion=findViewById(R.id.btnInfusion);
-        cacao=findViewById(R.id.btnCacao);
-        agua=findViewById(R.id.btnAgua);
-
+        {
+            cafe = findViewById(R.id.btnCafe);
+            te = findViewById(R.id.btnTe);
+            infusion = findViewById(R.id.btnInfusion);
+            cacao = findViewById(R.id.btnCacao);
+            agua = findViewById(R.id.btnAgua);
+        }
         //Text
-        txtCafe=findViewById(R.id.txtCafe);
-        txtTe=findViewById(R.id.txtTe);
-        txtInfusion=findViewById(R.id.txtInfusion);
-        txtCacao=findViewById(R.id.txtCacao);
-        txtAgua=findViewById(R.id.txtAgua);
-
+        {
+            txtCafe = findViewById(R.id.txtCafe);
+            txtTe = findViewById(R.id.txtTe);
+            txtInfusion = findViewById(R.id.txtInfusion);
+            txtCacao = findViewById(R.id.txtCacao);
+            txtAgua = findViewById(R.id.txtAgua);
+        }
         //Cantidades
-        cantCafe=0;
-        cantTe=0;
-        cantInfu=0;
-        cantCacao=0;
-        cantAgua=0;
-        txtCafe.setText(String.valueOf(cantCafe));
-        txtTe.setText(String.valueOf(cantTe));
-        txtInfusion.setText(String.valueOf(cantInfu));
-        txtCacao.setText(String.valueOf(cantCacao));
-        txtAgua.setText(String.valueOf(cantAgua));
-
+        {
+            cantCafe = 0;
+            cantTe = 0;
+            cantInfu = 0;
+            cantCacao = 0;
+            cantAgua = 0;
+            txtCafe.setText(String.valueOf(cantCafe));
+            txtTe.setText(String.valueOf(cantTe));
+            txtInfusion.setText(String.valueOf(cantInfu));
+            txtCacao.setText(String.valueOf(cantCacao));
+            txtAgua.setText(String.valueOf(cantAgua));
+        }
 
 
 

@@ -23,7 +23,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
     String producto="CREATE TABLE Producto(" +
             "CodProducto INTEGER PRIMARY KEY AUTOINCREMENT," +
             "Nombre VARCHAR(40)," +
-            "Precio DOUBLE(2,2))";
+            "Precio DOUBLE(2,2)," +
+            "UNIQUE(Nombre))";
 
     String pedido="CREATE TABLE Pedido(" +
             "CodPedido INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -69,7 +70,7 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase bd, int oldVersion, int newVersion) {
-        if(oldVersion<10){
+        if(oldVersion<11){
             bd.execSQL("DROP TABLE IF EXISTS Cliente");
             bd.execSQL("DROP TABLE IF EXISTS Producto");
             bd.execSQL("DROP TABLE IF EXISTS Pedido");

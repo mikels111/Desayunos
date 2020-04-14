@@ -27,7 +27,7 @@ public class ModificarCliente extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#21A5C5")));
 
         //Base de Datos
-        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 10);
+        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 11);
         final SQLiteDatabase bd = bdDesayunos.getWritableDatabase();
 
         editNombre=findViewById(R.id.editNombre);
@@ -72,7 +72,7 @@ public class ModificarCliente extends AppCompatActivity {
                                 "email='" + editEmail.getText() + "'," +
                                 "telefono='" + editTelefono.getText() + "'WHERE codCliente=" + codCliente + "");
                     }catch(Exception e){
-                        Toast aviso = Toast.makeText(getApplicationContext(), "Ese nombre ya existe", Toast.LENGTH_SHORT);
+                        Toast aviso = Toast.makeText(getApplicationContext(), "Ese nombre de producto ya existe", Toast.LENGTH_SHORT);
                         aviso.show();
                     }
 

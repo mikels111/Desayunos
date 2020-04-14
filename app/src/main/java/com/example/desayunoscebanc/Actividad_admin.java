@@ -42,7 +42,7 @@ public class Actividad_admin extends AppCompatActivity{
         ArrayList<Cliente> listaCliente=new ArrayList<>();
 
         //Base de Datos
-        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 10);
+        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 11);
         final SQLiteDatabase bd = bdDesayunos.getWritableDatabase();
 
 
