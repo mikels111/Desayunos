@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -63,7 +65,7 @@ public class ModificarInfoProducto extends AppCompatActivity {
                }else{
                    try {
                        bd.execSQL("UPDATE Producto SET Nombre='"+editNombre.getText()+"', Precio="+editPrecio.getText()+" WHERE CodProducto="+codProducto+"");
-                   }catch(Exception e){
+                   }catch(SQLiteException e){
                        Toast aviso = Toast.makeText(getApplicationContext(), "Ese nombre ya existe", Toast.LENGTH_SHORT);
                        aviso.show();
                    }
