@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import static com.example.desayunoscebanc.R.id.listProductos;
+import static com.example.desayunoscebanc.R.id.start;
 
 public class Actividad_3 extends AppCompatActivity {
 
@@ -185,9 +186,9 @@ public class Actividad_3 extends AppCompatActivity {
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent=new Intent(Actividad_3.this,MainActivity.class);
-                startActivity(intent);*/
                 finish();
+                Intent intent =new Intent(Actividad_3.this,MainActivity.class);
+                startActivity(intent);
             }
         });
     }

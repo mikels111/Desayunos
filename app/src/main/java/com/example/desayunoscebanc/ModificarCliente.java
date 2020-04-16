@@ -27,7 +27,7 @@ public class ModificarCliente extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#21A5C5")));
 
         //Base de Datos
-        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 11);
+        BDSQLiteHelper bdDesayunos = new BDSQLiteHelper(this, "BDDesayunos", null, 11 );
         final SQLiteDatabase bd = bdDesayunos.getWritableDatabase();
 
         editNombre=findViewById(R.id.editNombre);

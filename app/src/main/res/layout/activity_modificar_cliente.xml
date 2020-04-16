@@ -7,48 +7,33 @@
     tools:context=".ModificarCliente">
 
     <EditText
-        android:id="@+id/editNombre"
-        android:layout_width="wrap_content"
+        android:id="@+id/editContrasena"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:shadowColor="#FFFFFF"
+        android:inputType="text"
         android:textColorHighlight="#21A5C5"
         android:textColorLink="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.908"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView21"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182" />
+        app:layout_constraintVertical_bias="0.106" />
 
-    <EditText
-        android:id="@+id/editDireccion"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColorHighlight="#21A5C5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.378" />
-
-    <EditText
-        android:id="@+id/editEmail"
+    <Button
+        android:id="@+id/btnAceptar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:textColorHighlight="#21A5C5"
+        android:background="@drawable/bordes_redondos"
+        android:text="Aceptar"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.908"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.281" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editDireccion"
+        app:layout_constraintTop_toBottomOf="@+id/editDireccion"
+        app:layout_constraintVertical_bias="0.07" />
 
     <EditText
         android:id="@+id/editNumero"
@@ -59,10 +44,54 @@
         android:textColorHighlight="#21A5C5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editContrasena"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.281" />
+        app:layout_constraintVertical_bias="0.203" />
+
+    <EditText
+        android:id="@+id/editNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:shadowColor="#FFFFFF"
+        android:textColorHighlight="#21A5C5"
+        android:textColorLink="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintStart_toEndOf="@+id/editContrasena"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.106" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textColorHighlight="#21A5C5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintStart_toEndOf="@+id/editNumero"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.206" />
+
+    <EditText
+        android:id="@+id/editDireccion"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColorHighlight="#21A5C5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editNumero"
+        app:layout_constraintTop_toBottomOf="@+id/editNumero"
+        app:layout_constraintVertical_bias="0.056" />
 
     <TextView
         android:id="@+id/textView21"
@@ -77,33 +106,20 @@
         app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115" />
-
-    <EditText
-        android:id="@+id/editContrasena"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:textColorHighlight="#21A5C5"
-        android:textColorLink="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <Button
-        android:id="@+id/btnAceptar"
+        android:id="@+id/btnEliminarCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aceptar"
         android:background="@drawable/bordes_redondos"
+        android:text="Eliminar Cliente"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btnAceptar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toEndOf="@+id/btnAceptar"
+        app:layout_constraintTop_toBottomOf="@+id/editDireccion"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
