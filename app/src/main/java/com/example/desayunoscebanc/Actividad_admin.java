@@ -28,6 +28,7 @@ public class Actividad_admin extends AppCompatActivity{
 
     ListView lista;
     TextView prueba;
+    Button insertarCliente;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,10 @@ public class Actividad_admin extends AppCompatActivity{
         getWindow().setStatusBarColor(Color.parseColor("#21A5C5"));
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#21A5C5")));
 
+        //ListView
         lista=findViewById(R.id.lstClientes);
+        //Button
+        insertarCliente=findViewById(R.id.btnAddCliente);
 
         ArrayList<Cliente> listaCliente=new ArrayList<>();
 
@@ -74,6 +78,14 @@ public class Actividad_admin extends AppCompatActivity{
                 intent.putExtra("cliente",obj);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        insertarCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Actividad_admin.this,ModificarCliente.class);
+                startActivity(intent);
             }
         });
 

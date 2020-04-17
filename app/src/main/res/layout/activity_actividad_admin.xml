@@ -10,9 +10,8 @@
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clientes
-"
-        android:textColor="#889091"
+        android:text="Clientes"
+        android:textColor="#21A5C5"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,5 +30,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21"
         app:layout_constraintVertical_bias="0.089" />
+
+    <Button
+        android:id="@+id/btnAddCliente"
+        android:layout_width="53dp"
+        android:layout_height="49dp"
+        android:background="@drawable/bordes_redondos"
+        android:text="+"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lstClientes"
+        app:layout_constraintVertical_bias="0.079" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
