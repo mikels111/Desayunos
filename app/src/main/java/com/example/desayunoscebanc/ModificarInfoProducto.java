@@ -63,18 +63,29 @@ public class ModificarInfoProducto extends AppCompatActivity {
                    Toast aviso = Toast.makeText(getApplicationContext(), "Ese producto ya está registrado", Toast.LENGTH_SHORT);
                    aviso.show();
                }else{
-                   try {
-                       bd.execSQL("UPDATE Producto SET Nombre='"+editNombre.getText()+"', Precio="+editPrecio.getText()+" WHERE CodProducto="+codProducto+"");
-                   }catch(SQLiteException e){
-                       Toast aviso = Toast.makeText(getApplicationContext(), "Ese nombre ya existe", Toast.LENGTH_SHORT);
-                       aviso.show();
+                   Cursor c1=bd.rawQuery("SELECT COUNT(*) FROM Producto WHERE Nombre='"+editNombre.getText()+"'",null);
+                   int cont;
+                   if(c1.moveToFirst()){
+                       do{
+                           cont=c1.getInt(0);
+                           if(cont>0){
+                               Toast aviso = Toast.makeText(getApplicationContext(), "Ese nombre ya existe", Toast.LENGTH_SHORT);
+                               aviso.show();
+                           }else{
+                               try {
+                                   bd.execSQL("UPDATE Producto SET Nombre='"+editNombre.getText()+"', Precio="+editPrecio.getText()+" WHERE CodProducto="+codProducto+"");
+                               }catch(SQLiteException e){
+                                   Toast aviso = Toast.makeText(getApplicationContext(), "Error al actualizar", Toast.LENGTH_SHORT);
+                                   aviso.show();
+                               }
+                               Intent intent=new Intent(ModificarInfoProducto.this,Admin_productos.class);
+                               startActivity(intent);
+                               finish();
+                           }
+
+                       }while(c1.moveToNext());
                    }
-
                }
-                Intent intent=new Intent(ModificarInfoProducto.this,Admin_productos.class);
-                startActivity(intent);
-                finish();
-
             }
         });
 

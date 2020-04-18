@@ -33,7 +33,7 @@
 
     <Button
         android:id="@+id/btnAddCliente"
-        android:layout_width="53dp"
+        android:layout_width="51dp"
         android:layout_height="49dp"
         android:background="@drawable/bordes_redondos"
         android:text="+"

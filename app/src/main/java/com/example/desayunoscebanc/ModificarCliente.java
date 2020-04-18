@@ -81,7 +81,7 @@ public class ModificarCliente extends AppCompatActivity {
                                             "email='" + editEmail.getText() + "'," +
                                             "telefono='" + editTelefono.getText() + "'WHERE codCliente=" + codCliente + "");
                                 }catch(Exception e){
-                                    Toast aviso = Toast.makeText(getApplicationContext(), "Error Al actualizar", Toast.LENGTH_SHORT);
+                                    Toast aviso = Toast.makeText(getApplicationContext(), "Error al actualizar", Toast.LENGTH_SHORT);
                                     aviso.show();
                                 }
 
@@ -124,9 +124,5 @@ public class ModificarCliente extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
     }
 }

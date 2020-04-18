@@ -84,8 +84,9 @@ public class Actividad_admin extends AppCompatActivity{
         insertarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Actividad_admin.this,ModificarCliente.class);
+                Intent intent=new Intent(Actividad_admin.this,InsertarCliente.class);
                 startActivity(intent);
+                finish();
             }
         });
 
